@@ -74,6 +74,7 @@ A **collation header** is valid if calling `addHeader(header)` returns true. The
 
 -   the `shard_id` is at least 0, and less than `SHARD_COUNT`;
 -   the `expected_period_number` equals the actual current period number (i.e., `floor(block.number / PERIOD_LENGTH)`)
+-   no collation has been accepted for the same `shard_id` and the same `expected_period_number`;
 -   a collation with the hash `parent_hash` for the same shard has already been accepted; and
 -   the `sig` is a valid signature. That is, if we calculate `validation_code_addr = getEligibleProposer(shard_id, current_period)`, then call `validation_code_addr` with the calldata being `sha3(shortened_header) ++ sig` (where `shortened_header` is the RLP encoded form of the collation header _without_ the sig), the result of the call should be 1.
 
